@@ -1,0 +1,74 @@
+<div class="row  animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center">
+            <strong>Loading..</strong>
+            <br>
+            <span>Please wait</span>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12" *ngIf="!cargando">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" routerLink="/vista" class="btn btn-primary">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Give back
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" (click)="cargarTweet()" class="btn btn-success">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                        Recharge Tweets
+                    </button>
+                </div>
+            </div><br><br>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form ngNativeValidate class="form-horizontal form-material" id="tweetform">
+                        <div class="form-group m-t-20">
+                            <label>What do you want tweetear</label>
+                            <input [(ngModel)]="posttweet" name="posttweet" class="form-control" type="text" required placeholder="Type the tweet">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <label></label>
+                    <button type="button" (click)="posteTweet()" class="btn btn-primary">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        To post Tweet
+                    </button>
+                </div>
+            </div><br><br>
+
+
+            <h3 class="card-title">Tweet List <i class="fa fa-book" aria-hidden="true"></i> </h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Tweet</th>
+                        <th>User</th>
+                        <th>Username</th>
+                        <th>Creation date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of tweet">
+                        <td>{{ t.text }}</td>
+                        <td>{{ t.user.name }}</td>
+                        <td>@{{ t.user.screen_name }}</td>
+                        <td>{{ t.created_at }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

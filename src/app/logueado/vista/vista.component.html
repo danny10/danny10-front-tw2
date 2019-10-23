@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="row  animated fadeIn" *ngIf="cargando">
+        <div class="col-sm-12">
+            <div class="alert alert-warning text-center">
+                <strong>Loading..</strong>
+                <br>
+                <span>Please wait</span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12" *ngIf="!cargando">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" (click)="Logout()" class="btn btn-danger">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            Logout
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" [routerLink]="['/tweet', this.username]" class="btn btn-success">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            Show tweets 
+                        </button>
+                    </div>
+                </div><br><br>
+
+                <h3 class="card-title">Users Logged in with twiteer <i class="fa fa-twitter" aria-hidden="true"></i></h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usuarios">
+                            <td><img [src]="user.photo" style=" width: 30px;"></td>
+                            <td>{{ user.name }}</td>
+                            <td>@{{ user.username }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
